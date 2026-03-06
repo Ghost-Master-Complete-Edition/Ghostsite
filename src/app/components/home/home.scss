@@ -1,0 +1,19 @@
+.logo {
+    height: auto;
+    width: auto;
+    position: static;
+    max-height: 100%;
+    max-width: 100%;
+    vertical-align: middle;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+}
+
+.logo-shadow{
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 1));
+}
+
+.padding-bottom{
+    padding-bottom: 20px;
+}
