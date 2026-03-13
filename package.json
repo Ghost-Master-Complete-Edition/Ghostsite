@@ -39,6 +39,7 @@
     "@angular/youtube-player": "^21.1.4",
     "@fortawesome/angular-fontawesome": "^4.0.0",
     "@fortawesome/free-solid-svg-icons": "^7.1.0",
+    "@netlify/angular-runtime": "^3.0.1",
     "@semantic-icons/simple-icons": "^0.54.0",
     "express": "^5.1.0",
     "lucide-angular": "^0.563.0",
@@ -46,7 +47,7 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@angular/build": "^21.2.0",
+    "@angular/build": "^20.3.20",
     "@angular/cli": "^21.2.0",
     "@angular/compiler-cli": "^21.2.0",
     "@types/express": "^5.0.1",
