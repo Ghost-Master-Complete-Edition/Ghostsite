@@ -14,7 +14,7 @@ export class VideosService {
   private channelId = "UCZnhgqEWENvH2I9vd9HUegg";
   // "search" will return specific videos (high api cost)
   // "videos" will return most popular/recent videos (low api cost)
-  private baseUrl = "https://www.googleapis.com/youtube/v3/videos"; 
+  private baseUrl = "https://www.googleapis.com/youtube/v3/search"; 
   private numberOfVideos = 3;
 
   fetchLatestVideos(): Observable<any> {
