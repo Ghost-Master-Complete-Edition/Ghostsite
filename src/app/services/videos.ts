@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 export class VideosService {
   constructor(private http: HttpClient) {}
 
-/*   Do not add apiKey to repository */
-  private apiKey = "";
+/*   ApiKey for gmce */
+  private apiKey = "AIzaSyC0cmzrxisZNnRPVC5TwWnD--br1HZa0Gk";
   private channelId = "UCZnhgqEWENvH2I9vd9HUegg";
   // "search" will return specific videos (high api cost)
   // "videos" will return most popular/recent videos (low api cost)
