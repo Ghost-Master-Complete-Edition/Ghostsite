@@ -18,7 +18,7 @@ export class VideosService {
   private numberOfVideos = 3;
 
   fetchLatestVideos(): Observable<any> {
-    const url = `${this.baseUrl}?key=${this.apiKey}&part=snippet&chart=mostPopular&channelId=${this.channelId}&maxResults=${this.numberOfVideos}&order=date`;
+    const url = `${this.baseUrl}?key=${this.apiKey}&part=snippet&chart=mostPopular&type=video&channelId=${this.channelId}&maxResults=${this.numberOfVideos}&order=date`;
     return this.http.get(url);
   }
 }
