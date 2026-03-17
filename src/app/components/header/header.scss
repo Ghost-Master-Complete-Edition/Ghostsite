@@ -1,0 +1,42 @@
+header {
+    display: flex;
+    padding-inline: 4em;
+    padding-block: 10px;
+    font-family: 'japanette';
+    background: var(--background-primary-color);
+    justify-content: space-between;
+    color: white;
+}
+
+nav {
+    display: flex;
+    ul {
+        display: inline-flex;
+        align-items: center;
+        gap: 24px;
+        flex-direction: row;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li {
+            display: inline;
+            justify-content: space-between;
+            flex-direction: row;
+            font-size: 25px;
+            cursor: pointer;
+            &:hover {
+                color: black;
+                text-shadow: 1px 1px 5px greenyellow;
+            }
+        }
+    }
+}
+
+.header-icon {
+    display: block;
+    color: white;
+    &:hover {
+        color: black;
+        text-shadow: 2px 2px 10px greenyellow;
+    }
+}

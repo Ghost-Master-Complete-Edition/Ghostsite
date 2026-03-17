@@ -1,0 +1,111 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+h1,
+h2 {
+    font-family: 'japanette';
+}
+
+* {
+    box-sizing: inherit;
+    margin: 0;
+    outline: none;
+}
+
+.container {
+    padding: 3em;
+    display: block;
+    background: url("../public/GhostMasterBackground.png");
+    background-size: fill;
+    background-repeat: repeat-y;
+    background-position: top;
+    padding-left: 150px;
+    padding-right: 150px;
+    min-width: 700px;
+    min-height: 900px;
+}
+
+.body {
+    padding: 2em;
+    background-color: var(--background-primary-color);
+    border: 2px solid;
+    border-color: white;
+    border-radius: 10px;
+}
+
+.section-header {
+    font-family: 'japanette';
+    display: flex;
+    min-height: 53px;
+    align-items: center;
+    margin-bottom: 22px;
+    position: relative;
+    gap: 20px;
+}
+
+
+.button {
+    color: white;
+    display: inline-flex;
+    transition: opacity 200ms, border-color 200ms, background-color 200ms, color 200ms;
+    border: 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 14px 24px;
+    font-size: 25px;
+    background: radial-gradient(var(--background-primary-color) 40%, rgb(55, 131, 55, 0.6) 100%);
+
+    &:hover {
+        color: black;
+        background: radial-gradient(rgb(55, 131, 55, 0.6) 40%, var(--background-primary-color) 100%);
+        text-shadow: 1px 1px 5px greenyellow;
+    }
+
+    &:disabled {
+        pointer-events: none;
+        background-color: gray;
+        opacity: 0.8;
+    }
+}
+
+.button-outline {
+    border-color: grey;
+}
+
+/* .cursor-glow {
+    height: 30px;
+    width: 30px;
+    box-shadow: 0px 0px 20px rgba(112, 185, 103, 1);
+    background: radial-gradient(circle, rgba(112, 185, 103, 0.8) 0%, rgba(112, 185, 103, 0.2) 100%);
+    border-radius: 50%;
+    pointer-events: none;
+    position: fixed;
+    z-index: 9999;
+} */
+
+.custom-cursor {
+    cursor: url("../public/pdm_Haunter.cur");
+    /* TODO: fix custom cursor */
+}
+
+@font-face {
+    font-family: 'japanette';
+    src: url('./app/fonts/Japanette-Regular.ttf') format('truetype');
+}
+
+:root {
+    --background-primary-color: rgb(26, 99, 26, 0.5);
+}

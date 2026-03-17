@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="body">
+        <youtube-player class="youtube-video" [videoId]="videoId" placeholderImageQuality="high"
+            suggestedQuality="highres"> </youtube-player>
+        <ul class="grid">
+            <li class="element">
+                <h1 class="element-title">Mod</h1>
+                <div class="checkbox-element">
+                    <div ngCombobox readonly>
+                        <div #modOrigin class="select">
+                            <span class="combobox-label">
+                                <span>{{ selectedMod().displayName }}</span>
+                            </span>
+                            <input aria-labelledby="Mod dropdown" ngComboboxInput />
+                            <span class="example-arrow material-symbols-outlined" aria-hidden="true">arrow_drop_down</span>
+                        </div>
+                        <ng-template ngComboboxPopupContainer>
+                            <ng-template [cdkConnectedOverlay]="{origin: modOrigin, usePopover: 'inline', matchWidth: true}"
+                                [cdkConnectedOverlayOpen]="true">
+                                <div class="example-popup-container">
+                                    <div ngListbox (valuesChange)="onValueChanged($event, DOWNLOAD_TYPES.MOD)">
+                                        @for (version of modVersions; track version) {
+                                        <div ngOption [value]="version" [label]="version.displayName">
+                                            <span class="example-option-text">{{ version.displayName }}</span>
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ng-template>
+                    </div>
+                    <mat-checkbox title="Include installer" style="display: flex;" (change)="onIncludeInstallerChanged($event)" [checked]="includeInstaller">Installer</mat-checkbox>
+                </div>
+                <button type="button" (click)="downloadFile(DOWNLOAD_TYPES.MOD)" [disabled]="selectedMod().displayName == 'Select Version' ? true : false" class="button">
+                    Download
+                </button>
+            </li>
+            <li class="element">
+                <h1 class="element-title">BSP Editor</h1>
+                <div ngCombobox readonly>
+                    <div #bspOrigin class="select">
+                        <span class="combobox-label">
+                            <span>{{ selectedBsp().displayName }}</span>
+                        </span>
+                        <input aria-labelledby="BSP dropdown" ngComboboxInput />
+                        <span class="example-arrow material-symbols-outlined" aria-hidden="true">arrow_drop_down</span>
+                    </div>
+                    <ng-template ngComboboxPopupContainer>
+                        <ng-template [cdkConnectedOverlay]="{origin: bspOrigin, usePopover: 'inline', matchWidth: true}"
+                            [cdkConnectedOverlayOpen]="true">
+                            <div class="example-popup-container">
+                                <div ngListbox (valuesChange)="onValueChanged($event, DOWNLOAD_TYPES.BSP)">
+                                    @for (version of bspVersions; track version) {
+                                    <div ngOption [value]="version" [label]="version.displayName">
+                                        <span class="example-option-text">{{ version.displayName }}</span>
+                                    </div>
+                                    }
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ng-template>
+                </div>
+                <button type="button" (click)="downloadFile(DOWNLOAD_TYPES.BSP)" [disabled]="selectedBsp().displayName == 'Select Version' ? true : false" class="button">
+                    Download
+                </button>
+            </li>
+            <li class="element">
+                <h1 class="element-title">Soundtracks</h1>
+                <div ngCombobox readonly>
+                    <div #trackOrigin class="select">
+                        <span class="combobox-label">
+                            <span>{{ selectedSoundtrack().displayName }}</span>
+                        </span>
+                        <input aria-label="Track dropdown" ngComboboxInput />
+                        <span class="example-arrow material-symbols-outlined" aria-hidden="true">arrow_drop_down</span>
+                    </div>
+                    <ng-template ngComboboxPopupContainer>
+                        <ng-template
+                            [cdkConnectedOverlay]="{origin: trackOrigin, usePopover: 'inline', matchWidth: true}"
+                            [cdkConnectedOverlayOpen]="true">
+                            <div class="example-popup-container">
+                                <div ngListbox (valuesChange)="onValueChanged($event, DOWNLOAD_TYPES.TRACK)">
+                                    @for (track of soundtracks; track track) {
+                                    <div ngOption [value]="track" [label]="track.displayName">
+                                        <span class="example-option-text">{{ track.displayName }}</span>
+                                    </div>
+                                    }
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ng-template>
+                </div>
+                <button type="button" (click)="downloadFile(DOWNLOAD_TYPES.TRACK)" [disabled]="selectedSoundtrack().displayName == 'Select Soundtrack' ? true : false" class="button">
+                    Download
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>
