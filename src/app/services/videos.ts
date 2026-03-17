@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {environment} from '../../environments/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,12 +10,12 @@ import {environment} from '../../environments/environment';
 export class VideosService {
   constructor(private http: HttpClient) {}
 
-/*   ApiKey for gmce */
   private apiKey = environment.YOUTUBE_API_KEY;
   private channelId = "UCZnhgqEWENvH2I9vd9HUegg";
+
   // "search" will return specific videos (high api cost)
   // "videos" will return most popular/recent videos (low api cost)
-  private baseUrl = "https://www.googleapis.com/youtube/v3/search"; 
+  private baseUrl = "https://www.googleapis.com/youtube/v3/search";
   private numberOfVideos = 3;
 
   fetchLatestVideos(): Observable<any> {
