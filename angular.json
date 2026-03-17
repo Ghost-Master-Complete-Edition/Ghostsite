@@ -69,6 +69,11 @@
           "defaultConfiguration": "production"
         },
         "serve": {
+          "options": {
+            "allowedHosts": [
+              "devserver-develop--gmce-test.netlify.app"
+            ]
+          },
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
