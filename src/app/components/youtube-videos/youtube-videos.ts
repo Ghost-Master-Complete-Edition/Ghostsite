@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VideosService } from '../../services/videos';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-youtube-videos',
@@ -13,11 +14,12 @@ export class YoutubeVideos implements OnInit {
   videos: any[] = [];
 
   ngOnInit(): void {
-
     this.videosService.fetchLatestVideos().subscribe((receivedVideos) => {
       this.videos.push(receivedVideos.items);
-      console.log(this.videos);
-    }
+        console.log("here");
+        console.log(environment.YOUTUBE_API_KEY);
+/*       console.log(this.videos);
+ */    }
     );
   };
 }
