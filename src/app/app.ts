@@ -7,9 +7,9 @@ import { Header } from './components/header/header';
   imports: [RouterOutlet, Header],
   templateUrl: './app.html',
   styleUrl: './app.scss',
-/*   host: {
+  host: {
     '(mousemove)' : 'onMouseMove($event)'
-    } */
+    }
 })
 
 export class App {
@@ -19,11 +19,11 @@ export class App {
 
     /*Add div back in app.html for cursor glow*/
     
-/*     onMouseMove = (event: MouseEvent) => {
+    onMouseMove = (event: MouseEvent) => {
     const mouseX = event.clientX - 15;
     const mouseY = event.clientY - 15;
     const elem = this.el.nativeElement.querySelector('.cursor-glow');
     elem.style.left = mouseX + 'px';
     elem.style.top = mouseY + 'px';
-  } */
+  }
 }
