@@ -16,10 +16,7 @@ export class YoutubeVideos implements OnInit {
   ngOnInit(): void {
     this.videosService.fetchLatestVideos().subscribe((receivedVideos) => {
       this.videos.push(receivedVideos.items);
-        console.log("here");
-        console.log(environment.YOUTUBE_API_KEY);
-/*       console.log(this.videos);
- */    }
+     }
     );
   };
 }

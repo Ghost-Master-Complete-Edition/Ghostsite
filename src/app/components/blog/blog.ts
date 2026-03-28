@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StrapiService } from '../../services/strapiservice';
 
 @Component({
   selector: 'app-blog',
@@ -7,5 +8,18 @@ import { Component } from '@angular/core';
   styleUrl: './blog.scss',
 })
 export class Blog {
+  constructor(private strapiService: StrapiService) {}
 
+  contentItems: any[] = []; //Data for posts gets read from here
+
+  ngOnInit(): void {
+    this.strapiService.getContentType('blog-posts').subscribe(
+      (response) => {
+        this.contentItems = response.data;
+      },
+      (error) => {
+        console.error('Error fetching content:', error);
+      }
+    );
+  }
 }
