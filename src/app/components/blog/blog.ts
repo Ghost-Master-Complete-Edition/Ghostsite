@@ -21,5 +21,6 @@ export class Blog {
         console.error('Error fetching content:', error);
       }
     );
+    this.contentItems.sort((a, b) => new Date(b.date1).getTime() - new Date(a.date1).getTime());
   }
 }

@@ -1,5 +1,3 @@
-import { handler } from "../app/functions/API_Functions";
-
 export const environment = {
-    YOUTUBE_API_KEY: handler
+    YOUTUBE_API_KEY: process.env["NG_APP_YOUTUBE_API_KEY"],
 };

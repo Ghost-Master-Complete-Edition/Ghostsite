@@ -15,10 +15,7 @@ import { Header } from './components/header/header';
 export class App {
   constructor(private el: ElementRef){
   }
-  
-
-    /*Add div back in app.html for cursor glow*/
-    
+    /*Add/remove div in app.html for cursor glow*/
     onMouseMove = (event: MouseEvent) => {
     const mouseX = event.clientX - 15;
     const mouseY = event.clientY - 15;
@@ -26,4 +23,6 @@ export class App {
     elem.style.left = mouseX + 'px';
     elem.style.top = mouseY + 'px';
   }
+
+  
 }
