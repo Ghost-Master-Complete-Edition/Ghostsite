@@ -16,7 +16,7 @@ export class Posts {
   ngOnInit(): void {
     this.strapiService.getContentType('blog-posts').subscribe(
       (response) => {
-        this.contentItems = response.data;
+        this.contentItems = response.data.slice(0,3);//We only show 3 posts
       },
       (error) => {
         console.error('Error fetching content:', error);

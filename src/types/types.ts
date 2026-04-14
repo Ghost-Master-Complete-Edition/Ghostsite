@@ -6,5 +6,6 @@ export enum DOWNLOAD_TYPES {
 
 export type DropdownItem = {
   displayName: string;
-  downloadName: string;  
+  downloadLink: string;
+  downloadInstallerLink: string;
 }

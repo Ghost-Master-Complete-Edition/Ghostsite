@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
 export class StrapiService {
   constructor(private http: HttpClient) { }
 
-  private apiUrl = 'http://localhost:1337'; //http://localhost:1337 for testing locally
+  private apiUrl = environment.STRAPI_LINK; //http://localhost:1337 for testing locally
   
   getContentType(contentType: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/api/${contentType}?populate=*`);

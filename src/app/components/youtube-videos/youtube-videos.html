@@ -8,7 +8,7 @@
         @for (video of videos[0]; track video){
         <div>
             <div class="grid-element">
-                <a href="https://www.youtube.com/watch?v={{video.id.videoId}}" target="_blank">
+                <a href="https://www.youtube.com/watch?v={{video.snippet.resourceId.videoId}}" target="_blank">
                     <img class="video-element" src="{{video.snippet.thumbnails.high.url}}">
                     <div class="video-icon">
                         <img class="icon" src="https://themes.fourthwall.com/themes-library/assets/4f0a22bb-18fb-48c8-9cde-ab49e0488166/assets/yt_icon.png?v=efb3f0dac77121383b036757455c96916485cb68e5d09739435912ddbd97086f" />
