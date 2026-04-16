@@ -6,11 +6,43 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class StrapiService {
-  constructor(private http: HttpClient) { }
 
+export class StrapiService {
   private apiUrl = environment.STRAPI_LINK; //http://localhost:1337 for testing locally
-  
+
+  blogPosts: any[] = []; //Data for posts gets read from here
+  downloads: any[] = [];
+
+  constructor(private http: HttpClient) {
+    this.getContentType('blog-posts').subscribe(
+      (response) => {
+        this.blogPosts = response.data;
+      },
+      (error) => {
+        console.error('Error fetching content:', error);
+      }
+    );
+    this.getContentType('downloads').subscribe(
+      (response) => {
+        this.downloads = response.data;
+      },
+      (error) => {
+        console.error('Error fetching content:', error);
+      }
+    );
+
+    this.blogPosts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    this.downloads.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+   }
+
+  getBlogPosts(){
+    return this.blogPosts;
+  }
+
+  getDownloads(){
+    return this.downloads;
+  }
+
   getContentType(contentType: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/api/${contentType}?populate=*`);
   }

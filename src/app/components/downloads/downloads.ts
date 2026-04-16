@@ -51,77 +51,10 @@ export class Downloads implements OnInit {
 
   includeInstaller: boolean = true;
 
-  /*   ngOnInit(): void {
-      this.modVersions = [
-        {
-          displayName: '5.0.7 - Trainspooking',
-          downloadName: 'GMCE_5.0.7.zip'
-        },
-        {
-          displayName: '4.0.2 - Achievements',
-          downloadName: 'GMCE_4.0.2.zip',
-        },
-        {
-          displayName: '3.0.2 - Chronicler',
-          downloadName: 'GMCE_3.0.2.zip',
-        },
-      ];
-  
-      this.bspVersions = [
-        {
-          displayName: '4.2.0 - xxxx',
-          downloadName: 'GMCE_4.2.0 - xxxx',
-        },
-        {
-          displayName: '3.1.0 - xxxx',
-          downloadName: 'GMCE_3.1.0 - xxxx',
-        },
-        {
-          displayName: '2.4.0 - xxxx',
-          downloadName: 'GMCE_2.4.0 - xxxx',
-        },
-        {
-          displayName: '1.5.0 - xxxx',
-          downloadName: 'GMCE_1.5.0 - xxxx',
-        },
-      ];
-  
-      this.soundtracks = [
-        {
-          displayName: 'track1',
-          downloadName: 'GMCE_track1',
-        },
-        {
-          displayName: 'track2',
-          downloadName: 'GMCE_track2',
-        },
-        {
-          displayName: 'track3',
-          downloadName: 'GMCE_track3',
-        },
-        {
-          displayName: 'track4',
-          downloadName: 'GMCE_track4',
-        },
-        {
-          displayName: 'track5',
-          downloadName: 'GMCE_track5',
-        },
-      ];
-    } */
-
   contentItems: any[] = []; //Data for posts gets read from here
 
   ngOnInit(): void {
-    this.strapiService.getContentType('downloads').subscribe(
-      (response) => {
-        this.contentItems = response.data;
-      },
-      (error) => {
-        console.error('Error fetching content:', error);
-      }
-    );
-    this.contentItems.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    this.contentItems = this.strapiService.getDownloads();
     for (let item of this.contentItems) {
       switch (item.Download_Type) {
         case "Mod":
@@ -159,22 +92,25 @@ export class Downloads implements OnInit {
 
   downloadFile(buttonType: DOWNLOAD_TYPES) {
     let url = "";
-/*     let filename = "";
- */
+    let filename = "";
+
     switch (buttonType) {
       case DOWNLOAD_TYPES.MOD:
         if (this.includeInstaller == false)
         url = this.selectedMod().downloadLink;
         else
         url = this.selectedMod().downloadInstallerLink;
+        filename = this.selectedMod().displayName;
         break;
 
       case DOWNLOAD_TYPES.BSP:
         url = this.selectedBsp().downloadLink;
+        filename = this.selectedBsp().displayName;
         break;
 
       case DOWNLOAD_TYPES.TRACK:
         url = this.selectedSoundtrack().downloadLink;
+        filename = this.selectedSoundtrack().displayName;
         break;
 
       default:

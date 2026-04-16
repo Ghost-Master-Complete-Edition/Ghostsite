@@ -13,14 +13,6 @@ export class Blog {
   contentItems: any[] = []; //Data for posts gets read from here
 
   ngOnInit(): void {
-    this.strapiService.getContentType('blog-posts').subscribe(
-      (response) => {
-        this.contentItems = response.data;
-      },
-      (error) => {
-        console.error('Error fetching content:', error);
-      }
-    );
-    this.contentItems.sort((a, b) => new Date(b.date1).getTime() - new Date(a.date1).getTime());
+    this.contentItems = this.strapiService.getBlogPosts();
   }
 }

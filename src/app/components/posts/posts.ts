@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { StrapiService } from '../../services/strapiservice';
+import { empty, shareReplay, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-posts',
@@ -10,18 +11,9 @@ import { StrapiService } from '../../services/strapiservice';
 })
 export class Posts {
   constructor(private strapiService: StrapiService) {}
-
-  contentItems: any[] = []; //Data for posts gets read from here
+  contentItems: any[] = [];
 
   ngOnInit(): void {
-    this.strapiService.getContentType('blog-posts').subscribe(
-      (response) => {
-        this.contentItems = response.data.slice(0,3);//We only show 3 posts
-      },
-      (error) => {
-        console.error('Error fetching content:', error);
-      }
-    );
-    this.contentItems.sort((a, b) => new Date(b.date1).getTime() - new Date(a.date1).getTime());
+    this.contentItems = this.strapiService.getBlogPosts().slice(0,3);
   }
 }
