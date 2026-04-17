@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 export class StrapiService {
   private apiUrl = environment.STRAPI_LINK; //http://localhost:1337 for testing locally
 
-  blogPosts: any[] = []; //Data for posts gets read from here
+  blogPosts: any[] = []; 
   downloads: any[] = [];
 
   constructor(private http: HttpClient) {
@@ -30,7 +30,8 @@ export class StrapiService {
         console.error('Error fetching content:', error);
       }
     );
-
+    console.log(this.blogPosts);
+    console.log(this.downloads);
     this.blogPosts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
     this.downloads.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
    }
@@ -44,7 +45,7 @@ export class StrapiService {
   }
 
   getContentType(contentType: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/api/${contentType}?populate=*`);
+    return this.http.get(`${this.apiUrl}/api/${contentType}?populate=*&cors=*`);
   }
 
   getSingleItem(contentType: string, id: number): Observable<any> {

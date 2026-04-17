@@ -9,7 +9,8 @@ const config: Core.Config.Middlewares = [
     config: {
       enabled: true,
       headers: '*',
-      origin: ['localhost:1400','localhost:4200', 'https://gmce-test.netlify.app']
+      methods: '*',
+      keepHeaderOnError: true,
     }
   },
   'strapi::poweredBy',
