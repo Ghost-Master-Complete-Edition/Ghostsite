@@ -5,6 +5,7 @@
         <h1>{{post.Title}}</h1>
         <img [src]="post.Media?.url" class="image">
         <p>{{post.Body}}</p>
+        <p class="date">Posted on {{post.createdAt.slice(0,10)}}</p>
     </div>
     }
     @empty

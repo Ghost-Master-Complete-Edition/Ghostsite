@@ -34,8 +34,8 @@ export class StrapiService {
     );
     console.log(this.blogPosts);
     console.log(this.downloads);
-    this.blogPosts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-    this.downloads.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    this.blogPosts.sort((a, b) => b.id - a.id);
+    this.downloads.sort((a, b) => b.id - a.id);
    }
 
   getBlogPosts(){
