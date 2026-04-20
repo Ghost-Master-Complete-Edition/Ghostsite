@@ -14,6 +14,8 @@ export class StrapiService {
   downloads: any[] = [];
 
   constructor(private http: HttpClient) {
+    console.log(this.blogPosts);
+    console.log(this.downloads);
     this.getContentType('blog-posts').subscribe(
       (response) => {
         this.blogPosts = response.data;
