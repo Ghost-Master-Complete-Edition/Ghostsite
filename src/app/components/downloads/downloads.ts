@@ -34,8 +34,8 @@ import { StrapiService } from '../../services/strapiservice';
   styleUrl: './downloads.scss',
 })
 
-export class Downloads implements OnInit {
-  constructor(private strapiService: StrapiService) { };
+export class Downloads implements OnInit{
+  constructor(private strapiService: StrapiService) {};
 
   videoId = 'totvGN4owj4'; //Change this to display another video, example: https://www.youtube.com/watch?v=totvGN4owj4  
 
@@ -55,6 +55,8 @@ export class Downloads implements OnInit {
 
   ngOnInit(): void {
     this.contentItems = this.strapiService.getDownloads();
+    this.contentItems.sort((a, b) => b.id - a.id);
+    console.log(this.contentItems);
     for (let item of this.contentItems) {
       switch (item.Download_Type) {
         case "Mod":
