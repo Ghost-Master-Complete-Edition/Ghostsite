@@ -55,7 +55,6 @@ export class Downloads implements OnInit{
 
   ngOnInit(): void {
     this.contentItems = this.strapiService.getDownloads();
-    this.contentItems.sort((a, b) => b.id - a.id);
     console.log(this.contentItems);
     for (let item of this.contentItems) {
       switch (item.Download_Type) {

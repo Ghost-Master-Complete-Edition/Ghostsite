@@ -14,8 +14,6 @@ export class StrapiService {
   downloads: any[] = [];
 
   constructor(private http: HttpClient) {
-    console.log(this.blogPosts);
-    console.log(this.downloads);
     this.getContentType('blog-posts').subscribe(
       (response) => {
         this.blogPosts = response.data;
@@ -32,8 +30,6 @@ export class StrapiService {
         console.error('Error fetching content:', error);
       }
     );
-    console.log(this.blogPosts);
-    console.log(this.downloads);
     this.blogPosts.sort((a, b) => b.id - a.id);
     this.downloads.sort((a, b) => b.id - a.id);
    }
