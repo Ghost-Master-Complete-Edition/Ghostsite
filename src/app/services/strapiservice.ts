@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { effect, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -10,36 +10,55 @@ import { environment } from '../../environments/environment';
 export class StrapiService {
   private apiUrl = environment.STRAPI_LINK; //http://localhost:1337 for testing locally
 
-  blogPosts: any[] = []; 
-  downloads: any[] = [];
+  blogPosts$: any[] = [];
+  downloads$: any[] = [];
 
   constructor(private http: HttpClient) {
-    this.getContentType('blog-posts').subscribe(
-      (response) => {
-        this.blogPosts = response.data;
-      },
-      (error) => {
-        console.error('Error fetching content:', error);
-      }
-    );
-    this.getContentType('downloads').subscribe(
-      (response) => {
-        this.downloads = response.data;
-      },
-      (error) => {
-        console.error('Error fetching content:', error);
-      }
-    );
-    this.blogPosts.sort((a, b) => b.id - a.id);
-    this.downloads.sort((a, b) => b.id - a.id);
-   }
 
-  getBlogPosts(){
-    return this.blogPosts;
+    effect(() => {
+      this.getContentType('blog-posts').subscribe(
+        (response) => {
+          this.blogPosts$ = response.data;
+        },
+        (error) => {
+          console.error('Error fetching content:', error);
+        }
+      );
+      
+      this.getContentType('downloads').subscribe(
+        (response) => {
+          this.downloads$ = response.data;
+        },
+        (error) => {
+          console.error('Error fetching content:', error);
+        }
+      );
+    });
+      
+    this.blogPosts$.sort((a, b) => b.id - a.id);
+    this.downloads$.sort((a, b) => b.id - a.id);
   }
 
-  getDownloads(){
-    return this.downloads;
+  getBlogPosts() {
+    if (!this.blogPosts$) {
+      this.getContentType('blog-posts').subscribe(
+        (response) => {
+          this.blogPosts$ = response.data;
+        }
+      );
+    }
+    return this.blogPosts$;
+  }
+
+  getDownloads() {
+    if (!this.downloads$) {
+      this.getContentType('downloads').subscribe(
+        (response) => {
+          this.downloads$ = response.data;
+        }
+      );
+    }
+    return this.downloads$;
   }
 
   getContentType(contentType: string): Observable<any> {
