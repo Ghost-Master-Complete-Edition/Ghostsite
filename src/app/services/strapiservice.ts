@@ -1,6 +1,6 @@
-import { effect, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -14,27 +14,36 @@ export class StrapiService {
   downloads$: any[] = [];
 
   constructor(private http: HttpClient) {
+    this.getContentType('blog-posts').pipe(
+        map(res => {
+            this.blogPosts$ = res.data;
+        })
+    );
 
-    effect(() => {
-      this.getContentType('blog-posts').subscribe(
-        (response) => {
-          this.blogPosts$ = response.data;
-        },
-        (error) => {
-          console.error('Error fetching content:', error);
-        }
-      );
-      
-      this.getContentType('downloads').subscribe(
-        (response) => {
-          this.downloads$ = response.data;
-        },
-        (error) => {
-          console.error('Error fetching content:', error);
-        }
-      );
-    });
-      
+   this.getContentType('downloads').pipe(
+        map(res => {
+            this.blogPosts$ = res.data;
+        })
+    );
+
+/*     this.getContentType('blog-posts').subscribe(
+      (response) => {
+        this.blogPosts$ = response.data;
+      },
+      (error) => {
+        console.error('Error fetching content:', error);
+      }
+    ); */
+
+/*     this.getContentType('downloads').subscribe(
+      (response) => {
+        this.downloads$ = response.data;
+      },
+      (error) => {
+        console.error('Error fetching content:', error);
+      }
+    ); */
+
     this.blogPosts$.sort((a, b) => b.id - a.id);
     this.downloads$.sort((a, b) => b.id - a.id);
   }
