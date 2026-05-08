@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   Combobox,
   ComboboxInput,
@@ -34,8 +34,9 @@ import { StrapiService } from '../../services/strapiservice';
   styleUrl: './downloads.scss',
 })
 
-export class Downloads implements OnInit{
-  constructor(private strapiService: StrapiService) {};
+export class Downloads implements OnInit {
+  constructor() { };
+  private strapiService = inject(StrapiService);
 
   videoId = 'totvGN4owj4'; //Change this to display another video, example: https://www.youtube.com/watch?v=totvGN4owj4  
 
@@ -54,7 +55,10 @@ export class Downloads implements OnInit{
   contentItems: any[] = []; //Data for posts gets read from here
 
   ngOnInit(): void {
-    this.contentItems = this.strapiService.getDownloads();
+    this.strapiService.downloads$.subscribe(response => {
+      this.contentItems = response.data;
+    });
+    this.contentItems.sort((a, b) => b.id - a.id);
     console.log(this.contentItems);
     for (let item of this.contentItems) {
       switch (item.Download_Type) {
@@ -98,9 +102,9 @@ export class Downloads implements OnInit{
     switch (buttonType) {
       case DOWNLOAD_TYPES.MOD:
         if (this.includeInstaller == false)
-        url = this.selectedMod().downloadLink;
+          url = this.selectedMod().downloadLink;
         else
-        url = this.selectedMod().downloadInstallerLink;
+          url = this.selectedMod().downloadInstallerLink;
         filename = this.selectedMod().displayName;
         break;
 

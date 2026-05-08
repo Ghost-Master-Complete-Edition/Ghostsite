@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 
 export class DownloadsService {
-  constructor(private http: HttpClient) {}
+  constructor() { }
+  private http = inject(HttpClient);
 
   downloadFile(url: string): Observable<Blob> {
     return this.http.get(url, { responseType: 'blob' });
