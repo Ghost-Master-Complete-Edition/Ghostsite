@@ -11,9 +11,11 @@ import { strapi } from '@strapi/client';
 
 export class StrapiService {
   private apiUrl = environment.STRAPI_LINK; //http://localhost:1337 for testing locally
+  private apiKey = environment.STRAPI_API_KEY;
   private http = inject(HttpClient);
   private strapi = strapi({
     baseURL: `${this.apiUrl}/api`,
+    auth: this.apiKey
   });
 
   private blogPostsCollection = this.strapi.collection('blog-posts');
