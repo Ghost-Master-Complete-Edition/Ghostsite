@@ -55,24 +55,23 @@ export class Downloads implements OnInit {
   contentItems: any[] = []; //Data for posts gets read from here
 
   ngOnInit(): void {
-    this.strapiService.downloads$.subscribe(response => {
+    this.strapiService.downloads$.then(response => {
       this.contentItems = response.data;
-    });
-    this.contentItems.sort((a, b) => b.id - a.id);
-    console.log(this.contentItems);
-    for (let item of this.contentItems) {
-      switch (item.Download_Type) {
-        case "Mod":
-          this.modVersions.push(<DropdownItem>{ displayName: item.File_Name, downloadLink: item.Download_Link, downloadInstallerLink: item.Download_Link_Installer });
-          break;
-        case "BSP":
-          this.bspVersions.push(<DropdownItem>{ displayName: item.File_Name, downloadLink: item.Download_Link, downloadInstallerLink: "" });
-          break;
-        case "Soundtrack":
-          this.soundtracks.push(<DropdownItem>{ displayName: item.File_Name, downloadLink: item.Download_Link, downloadInstallerLink: "" });
-          break;
-      }
-    }
+      console.log(this.contentItems);
+      for (let item of this.contentItems) {
+        switch (item.Download_Type) {
+          case "Mod":
+            this.modVersions.push(<DropdownItem>{ displayName: item.File_Name, downloadLink: item.Download_Link, downloadInstallerLink: item.Download_Link_Installer });
+            break;
+            case "BSP":
+              this.bspVersions.push(<DropdownItem>{ displayName: item.File_Name, downloadLink: item.Download_Link, downloadInstallerLink: "" });
+              break;
+              case "Soundtrack":
+                this.soundtracks.push(<DropdownItem>{ displayName: item.File_Name, downloadLink: item.Download_Link, downloadInstallerLink: "" });
+                break;
+              }
+            }
+          });
   }
 
   onIncludeInstallerChanged(event: any) {

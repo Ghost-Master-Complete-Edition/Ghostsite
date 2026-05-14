@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnChanges, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { StrapiService } from '../../services/strapiservice';
 
@@ -9,16 +9,16 @@ import { StrapiService } from '../../services/strapiservice';
   styleUrl: './posts.scss',
 })
 export class Posts implements OnInit {
-  constructor() { };
+  constructor() {};
   private strapiService = inject(StrapiService);
   contentItems: any[] = []; //Data for posts gets read from here
-
+  
   ngOnInit(): void {
-    this.strapiService.blogPosts$.subscribe(response => {
+    this.strapiService.blogPosts$.then(response => {
+      console.log('here');
+      console.log(response.data);
       this.contentItems = response.data;
+      this.contentItems = this.contentItems.slice(0, 3);
     });
-    this.contentItems.sort((a, b) => b.id - a.id);
-    this.contentItems = this.contentItems.slice(0, 3);
-    console.log(this.contentItems);
   }
 }

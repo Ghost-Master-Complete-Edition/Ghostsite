@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { StrapiService } from '../../services/strapiservice';
-
 @Component({
   selector: 'app-blog',
   imports: [],
@@ -10,13 +9,12 @@ import { StrapiService } from '../../services/strapiservice';
 export class Blog implements OnInit {
   constructor() { };
   private strapiService = inject(StrapiService);
-  contentItems: any[]; //Data for posts gets read from here
-
+  contentItems: any[] = []; //Data for posts gets read from here
+  
   ngOnInit(): void {
-    this.strapiService.blogPosts$.subscribe(response => {
+    this.strapiService.blogPosts$.then(response => {
       this.contentItems = response.data;
+      console.log(this.contentItems);
     });
-    this.contentItems.sort((a, b) => b.id - a.id);
-    console.log(this.contentItems);
   }
 }
